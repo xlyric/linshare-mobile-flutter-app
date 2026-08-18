@@ -30,7 +30,7 @@
 //  the Additional Terms applicable to LinShare software.
 //
 
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:linshare_flutter_app/presentation/redux/actions/network_connectivity_action.dart';
 import 'package:linshare_flutter_app/presentation/redux/states/app_state.dart';
 import 'package:redux/redux.dart';

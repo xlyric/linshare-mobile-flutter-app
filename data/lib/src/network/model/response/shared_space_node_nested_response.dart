@@ -45,8 +45,6 @@ part 'shared_space_node_nested_response.g.dart';
 @JsonSerializable()
 @DatetimeConverter()
 @QuotaIdConverter()
-@SharedSpaceIdConverter()
-@SharedSpaceIdNullableConverter()
 class SharedSpaceNodeNestedResponse extends Equatable {
   SharedSpaceNodeNestedResponse(
     this.sharedSpaceId,
@@ -61,9 +59,11 @@ class SharedSpaceNodeNestedResponse extends Equatable {
   );
 
   @JsonKey(name: Attribute.uuid)
+  @SharedSpaceIdConverter()
   final SharedSpaceId sharedSpaceId;
 
   @JsonKey(name: Attribute.parentUuid)
+  @SharedSpaceIdNullableConverter()
   final SharedSpaceId? parentId;
 
   final SharedSpaceRoleDto? role;

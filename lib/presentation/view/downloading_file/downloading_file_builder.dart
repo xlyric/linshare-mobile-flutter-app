@@ -93,7 +93,7 @@ class DownloadingFileBuilder {
         ),
       ),
       actions: <Widget>[
-        FlatButton(
+        TextButton(
           onPressed: () {
             cancelToken.cancel(['user cancel download file']);
             _appNavigation.popBack();

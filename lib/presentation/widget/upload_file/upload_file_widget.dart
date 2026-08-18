@@ -476,9 +476,12 @@ class _UploadFileWidgetState extends State<UploadFileWidget> {
           SizedBox(
             height: 17.0,
           ),
-          TypeAheadFormField(
-              textFieldConfiguration: TextFieldConfiguration(
-                  controller: _typeAheadController,
+          TypeAheadField<AutoCompleteResult>(
+              controller: _typeAheadController,
+              builder: (context, controller, focusNode) {
+                return TextField(
+                  controller: controller,
+                  focusNode: focusNode,
                   textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                       contentPadding: EdgeInsets.symmetric(vertical: 15),
@@ -489,7 +492,9 @@ class _UploadFileWidgetState extends State<UploadFileWidget> {
                       prefixIcon: Icon(
                         Icons.person_add,
                         size: 24.0,
-                      ))),
+                      )),
+                );
+              },
               debounceDuration: Duration(milliseconds: 300),
               suggestionsCallback: (pattern) async {
                 if (pattern.length >= 3) {
@@ -516,11 +521,11 @@ class _UploadFileWidgetState extends State<UploadFileWidget> {
                           color: AppColor.userTagRemoveButtonBackgroundColor)),
                 );
               },
-              onSuggestionSelected: (autoCompleteResult) {
+              onSelected: (autoCompleteResult) {
                 _typeAheadController.text = '';
-                uploadFileViewModel.addUserEmail(autoCompleteResult as AutoCompleteResult);
+                uploadFileViewModel.addUserEmail(autoCompleteResult);
               },
-              noItemsFoundBuilder: (context) => Padding(
+              emptyBuilder: (context) => Padding(
                     padding: EdgeInsets.all(24.0),
                     child: Text(
                       AppLocalizations.of(context).unknown_user,

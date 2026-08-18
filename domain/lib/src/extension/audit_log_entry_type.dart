@@ -114,6 +114,8 @@ extension AuditLogEntryTypeExtension on AuditLogEntryType {
               return ClientLogAction.COPY_FROM_RECEIVED_SHARE;
             case SpaceType.SHARED_SPACE:
               return ClientLogAction.COPY_FROM_SHARED_SPACE;
+            case SpaceType.UPLOAD_REQUEST:
+              return ClientLogAction.UPDATE;
           }
         }
 

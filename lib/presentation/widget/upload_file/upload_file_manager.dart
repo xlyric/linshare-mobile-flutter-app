@@ -62,8 +62,8 @@ class UploadFileManager {
 
   Stream<List<SharedMediaFile>> getReceivingSharingStream() {
     return Rx.merge([
-      Stream.fromFuture(ReceiveSharingIntent.getInitialMedia()),
-      ReceiveSharingIntent.getMediaStream()
+      Stream.fromFuture(ReceiveSharingIntent.instance.getInitialMedia()),
+      ReceiveSharingIntent.instance.getMediaStream()
     ]);
   }
 }

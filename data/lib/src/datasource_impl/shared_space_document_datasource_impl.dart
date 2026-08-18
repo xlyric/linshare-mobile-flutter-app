@@ -148,7 +148,7 @@ class SharedSpaceDocumentDataSourceImpl implements SharedSpaceDocumentDataSource
     developer.log('downloadNodes(): ${workgroupNodes.length}', name: 'SharedSpaceDocumentDataSourceImpl');
     var externalStorageDirPath;
     if (Platform.isAndroid) {
-        externalStorageDirPath = await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS);
+        externalStorageDirPath = await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOAD);
     } else if (Platform.isIOS) {
         externalStorageDirPath = (await getApplicationDocumentsDirectory()).absolute.path;
     } else {

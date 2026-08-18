@@ -69,7 +69,7 @@ void main() {
 
     test('getAllChildNodes should throw GetChildNodesNotFoundException when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(_linShareHttpClient.getWorkGroupChildNodes(sharedSpaceId1))
@@ -110,7 +110,7 @@ void main() {
 
     test('Copy To SharedSpace Should Throw Exception When Copy Failed', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(_linShareHttpClient.copyWorkGroupNodeToSharedSpaceDestination(
@@ -144,7 +144,7 @@ void main() {
 
     test('Remove Shared Space Node Should Throw Exception When Remove Failed', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
 
@@ -222,7 +222,7 @@ void main() {
     });
 
     test('Created Folder Should Throw Exception When Fail', () async {
-      final error = DioError(type: DioErrorType.response, response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: ''));
+      final error = DioError(type: DioErrorType.badResponse, response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: ''));
       when(_linShareHttpClient.createSharedSpaceNodeFolder(
         argThat(isA<SharedSpaceId>()),
         argThat(isA<CreateSharedSpaceNodeFolderRequest>())
@@ -257,7 +257,7 @@ void main() {
 
     test('Rename Shared Space Node Should Throw Exception When Renamed Failed', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
 
@@ -295,7 +295,7 @@ void main() {
 
     test('Get Shared Space Node Should Throw Exception When Get Failed', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
 
@@ -332,7 +332,7 @@ void main() {
 
     test('GetWorkGroupNode With hasTreePath is true  Should Throw Exception When Get Failed', () async {
       final error = DioError(
-        type: DioErrorType.response,
+        type: DioErrorType.badResponse,
         response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
 
@@ -369,7 +369,7 @@ void main() {
 
     test('getRealSharedSpaceRootNode should throw SharedSpacesNotFound when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(_linShareHttpClient.getWorkGroupNode(
@@ -388,7 +388,7 @@ void main() {
 
     test('getRealSharedSpaceRootNode should throw SharedSpacesNotFound when linShareHttpClient response error with 403', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 403, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(_linShareHttpClient.getWorkGroupNode(
@@ -421,7 +421,7 @@ void main() {
 
     test('Move Shared Space Node Should Throw Exception When Get Failed', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
 

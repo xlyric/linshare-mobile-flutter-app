@@ -151,9 +151,12 @@ class _AddSharedSpaceMemberWidgetState extends State<AddRecipientsUploadRequestG
           SizedBox(
             height: 17.0,
           ),
-          TypeAheadFormField(
-              textFieldConfiguration: TextFieldConfiguration(
-                  controller: _typeAheadController,
+          TypeAheadField<AutoCompleteResult>(
+              controller: _typeAheadController,
+              builder: (context, controller, focusNode) {
+                return TextField(
+                  controller: controller,
+                  focusNode: focusNode,
                   textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                       contentPadding: EdgeInsets.symmetric(vertical: 15),
@@ -163,7 +166,9 @@ class _AddSharedSpaceMemberWidgetState extends State<AddRecipientsUploadRequestG
                       prefixIcon: Icon(
                         Icons.person_add,
                         size: 24.0,
-                      ))),
+                      )),
+                );
+              },
               debounceDuration: Duration(milliseconds: 300),
               suggestionsCallback: (pattern) async {
                 if (pattern.length >= 3) {
@@ -191,9 +196,9 @@ class _AddSharedSpaceMemberWidgetState extends State<AddRecipientsUploadRequestG
                           fontSize: 14.0, color: AppColor.userTagRemoveButtonBackgroundColor)),
                 );
               },
-              onSuggestionSelected: (autoCompleteResult) {
+              onSelected: (autoCompleteResult) {
                 _typeAheadController.text = '';
-                _model.addRecipientToList(autoCompleteResult as AutoCompleteResult);
+                _model.addRecipientToList(autoCompleteResult);
               },
               hideOnEmpty: true,
               hideOnLoading: true),

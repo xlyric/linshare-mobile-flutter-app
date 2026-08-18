@@ -71,7 +71,7 @@ class RetryAuthenticationInterceptors extends InterceptorsWrapper {
   }
 
   bool _isAuthenticationError(DioError dioError, int retryCount) {
-    if (dioError.type == DioErrorType.response &&
+    if (dioError.type == DioErrorType.badResponse &&
         dioError.response?.statusCode == 401 &&
         _permanentToken != null &&
         retryCount < _max_retry_count) {

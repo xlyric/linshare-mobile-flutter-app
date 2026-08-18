@@ -65,7 +65,7 @@ void main() {
 
     test('getSharedSpaceActivities should throw SharedSpaceActivitiesNotFound when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(_linShareHttpClient.getSharedSpaceActivities(argThat(isA<SharedSpaceId>())))
@@ -81,7 +81,7 @@ void main() {
 
     test('getSharedSpaceActivities should throw SharedSpaceActivitiesNotFound when linShareHttpClient response error with 403', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 403, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(_linShareHttpClient.getSharedSpaceActivities(argThat(isA<SharedSpaceId>())))

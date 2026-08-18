@@ -39,7 +39,6 @@ import 'dart:convert';
 part 'edit_upload_request_body_request.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-@DatetimeConverter()
 @DatetimeNullableConverter()
 class EditUploadRequestBodyRequest with EquatableMixin {
   final DateTime? activationDate;

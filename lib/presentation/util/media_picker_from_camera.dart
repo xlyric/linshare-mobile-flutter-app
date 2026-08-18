@@ -52,9 +52,9 @@ class MediaPickerFromCamera {
     CameraPickerState cameraPickerState,
     BuildContext context,
   ) {
-    _phoneStateSubscription = PhoneState.phoneStateStream.listen(
-      (status) {
-        if (status == PhoneStateStatus.CALL_INCOMING) {
+    _phoneStateSubscription = PhoneState.stream.listen(
+      (phoneState) {
+        if (phoneState.status == PhoneStateStatus.CALL_INCOMING) {
           onCallReceived.call(cameraPickerState, context);
         }
       },

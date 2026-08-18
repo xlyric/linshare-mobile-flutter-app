@@ -54,10 +54,12 @@ class ButtonTextActionBuilder extends ButtonActionBuilder {
       key: key,
       width: widthButton,
       height: heightButton,
-      child: FlatButton(
-        color: backgroundColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: borderRadius,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          backgroundColor: backgroundColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: borderRadius,
+          ),
         ),
         onPressed: () {
           FocusScope.of(context).unfocus();

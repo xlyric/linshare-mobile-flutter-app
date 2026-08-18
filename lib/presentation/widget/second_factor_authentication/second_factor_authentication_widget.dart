@@ -148,16 +148,18 @@ class SecondFactorAuthenticationWidget extends StatelessWidget {
               child: SizedBox(
                 width: double.infinity,
                 height: 48,
-                child: RaisedButton(
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(80),
-                    side:
-                        BorderSide(width: 0, color: AppColor.loginButtonColor),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(80),
+                      side:
+                          BorderSide(width: 0, color: AppColor.loginButtonColor),
+                    ),
+                    backgroundColor: AppColor.loginButtonColor,
+                    foregroundColor: Colors.white,
                   ),
                   onPressed: () => viewModel.goToSetup2FA(),
-                  color: AppColor.loginButtonColor,
-                  textColor: Colors.white,
                   child: Text(AppLocalizations.of(context).go_to_setup,
                       style: TextStyle(fontSize: 16, color: Colors.white)),
                 ),

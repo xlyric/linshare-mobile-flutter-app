@@ -115,9 +115,12 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
         child: Stack(
           alignment: Alignment.centerRight,
           children: [
-            TypeAheadFormField(
-              textFieldConfiguration: TextFieldConfiguration(
-                  controller: _typeAheadController,
+            TypeAheadField(
+              controller: _typeAheadController,
+              builder: (context, controller, focusNode) {
+                return TextField(
+                  controller: controller,
+                  focusNode: focusNode,
                   textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                       border: _searchBorder(),
@@ -149,7 +152,9 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
                                 color: AppColor.searchFilterButtonColor
                             ))
                         : null
-                  )),
+                  ),
+                );
+              },
               debounceDuration: Duration(milliseconds: 300),
               suggestionsCallback: (pattern) async {
                 if (widget.onNewSearchQuery != null) {
@@ -160,12 +165,12 @@ class _HomeAppBarWidgetState extends State<HomeAppBarWidget> {
               itemBuilder: (BuildContext context, itemData) {
                 return SizedBox.shrink();
               },
-              onSuggestionSelected: (suggestion) {},
-              noItemsFoundBuilder: (context) => SizedBox(),
+              onSelected: (suggestion) {},
+              emptyBuilder: (context) => SizedBox(),
               hideOnEmpty: true,
               hideOnError: true,
               hideOnLoading: true,
-              hideSuggestionsOnKeyboardHide: true,
+              hideOnUnfocus: true,
             ),
             if (searchDestination == SearchDestination.sharedSpace)
               Container(

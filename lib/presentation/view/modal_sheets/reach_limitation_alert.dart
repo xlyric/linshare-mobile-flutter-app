@@ -97,7 +97,7 @@ class ReachLimitationAlert extends StatelessWidget {
                 onPressed: () => _appNavigation.popBack(),
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size.fromHeight(48),
-                  primary: AppColor.closeButtonBackgroundColor,
+                  backgroundColor: AppColor.closeButtonBackgroundColor,
                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -115,7 +115,7 @@ class ReachLimitationAlert extends StatelessWidget {
                 onPressed: () => onContactNowPress?.call(),
                 style: OutlinedButton.styleFrom(
                   fixedSize: Size.fromHeight(48),
-                  primary: AppColor.loginDefaultButtonColor,
+                  foregroundColor: AppColor.loginDefaultButtonColor,
                   backgroundColor: AppColor.loginDefaultButtonColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),

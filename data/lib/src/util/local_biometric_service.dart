@@ -34,7 +34,7 @@ import 'package:data/src/util/biometric_service.dart';
 import 'package:domain/domain.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:local_auth_android/local_auth_android.dart';
-import 'package:local_auth_ios/local_auth_ios.dart';
+import 'package:local_auth_darwin/local_auth_darwin.dart';
 
 class LocalBiometricService extends BiometricService {
   final LocalAuthentication _localAuthentication;
@@ -56,12 +56,9 @@ class LocalBiometricService extends BiometricService {
           signInTitle: androidSettingArgument?.titleSetting),
         IOSAuthMessages(cancelButton: iosSettingArgument?.cancelButton)
       ],
-      options: const AuthenticationOptions(
-        useErrorDialogs: false,
-        stickyAuth: true,
-        sensitiveTransaction: true,
-        biometricOnly: false
-      )
+      persistAcrossBackgrounding: true,
+      sensitiveTransaction: true,
+      biometricOnly: false
     );
   }
 

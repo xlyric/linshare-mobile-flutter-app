@@ -35,7 +35,7 @@ import 'package:dartz/dartz.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:linshare_flutter_app/presentation/localizations/app_localizations.dart';
 import 'package:linshare_flutter_app/presentation/model/file_size_type.dart';

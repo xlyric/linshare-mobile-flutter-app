@@ -66,16 +66,15 @@ class LocalFilePicker {
           }
         }
       }
-      final filesResult = await FilePicker.platform
-          .pickFiles(type: fileType, allowMultiple: true);
-      if (filesResult != null && filesResult.files.isNotEmpty) {
-        final filesInfoResult = filesResult.files.map((platformFile) {
+      final filesResult = await FilePicker.pickFiles(type: fileType, allowMultiple: true);
+      if (filesResult.isNotEmpty) {
+        final filesInfoResult = await Future.wait(filesResult.map((platformFile) async {
           return FileInfo(
             _getSingleFileNameWithExtension(platformFile),
             _getSingleFilePathWithoutFileName(platformFile),
-            platformFile.size,
+            await platformFile.length(),
           );
-        }).toList();
+        }));
 
         return Right(FilePickerSuccessViewState(filesInfoResult));
       } else {

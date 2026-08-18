@@ -69,7 +69,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:redux/src/store.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 
-import 'package:share/share.dart' as share_library;
+import 'package:share_plus/share_plus.dart' as share_library;
 
 abstract class UploadRequestInsideViewModel extends BaseViewModel {
 
@@ -347,17 +347,17 @@ abstract class UploadRequestInsideViewModel extends BaseViewModel {
     return (Store<AppState> store) async {
       appNavigation.popBack();
       if (success is DownloadEntryIOSViewState) {
-        await share_library.Share.shareFiles([success.filePath]);
+        await share_library.Share.shareXFiles([share_library.XFile(success.filePath)]);
       } else if (success is DownloadEntryIOSAllSuccessViewState) {
-        await share_library.Share.shareFiles(success.resultList
+        await share_library.Share.shareXFiles(success.resultList
           .map((result) => ((result.getOrElse(() => IdleState()) as DownloadEntryIOSViewState).filePath))
-          .toList());
+          .toList().map((path) => share_library.XFile(path)).toList());
       } else if (success is DownloadEntryIOSHasSomeFilesFailureViewState) {
-        await share_library.Share.shareFiles(success.resultList
+        await share_library.Share.shareXFiles(success.resultList
           .map((result) => result.fold(
             (failure) => '',
             (success) => ((success as DownloadEntryIOSViewState).filePath)))
-          .toList());
+          .toList().map((path) => share_library.XFile(path)).toList());
       }
     };
   }

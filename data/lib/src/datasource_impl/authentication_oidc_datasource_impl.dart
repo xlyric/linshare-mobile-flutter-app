@@ -75,7 +75,7 @@ class AuthenticationOIDCDataSourceImpl implements AuthenticationOIDCDataSource {
             redirectUrl,
             discoveryUrl: discoveryUrl,
             scopes: scopes,
-            preferEphemeralSession: true,
+            externalUserAgent: ExternalUserAgent.ephemeralAsWebAuthenticationSession,
             promptValues: ['consent'],
             responseMode: 'query'));
 

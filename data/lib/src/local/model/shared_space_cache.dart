@@ -47,17 +47,17 @@ part 'shared_space_cache.g.dart';
 @JsonSerializable()
 @DatetimeConverter()
 @BooleanConverter()
-@SharedSpaceIdConverter()
 @SharedSpaceRoleIdConverter()
 @SharedSpaceRoleNameConverter()
 @LinShareNodeTypeConverter()
 @QuotaIdConverter()
-@SharedSpaceIdNullableConverter()
 class SharedSpaceCache with EquatableMixin {
 
   @JsonKey(name: SharedSpaceTable.SHARED_SPACE_ID)
+  @SharedSpaceIdConverter()
   final SharedSpaceId sharedSpaceId;
   @JsonKey(name: SharedSpaceTable.DRIVE_ID)
+  @SharedSpaceIdNullableConverter()
   final SharedSpaceId? parentId;
   @JsonKey(name: SharedSpaceTable.SHARED_SPACE_ROLE_ID)
   final SharedSpaceRoleId? sharedSpaceRoleId;

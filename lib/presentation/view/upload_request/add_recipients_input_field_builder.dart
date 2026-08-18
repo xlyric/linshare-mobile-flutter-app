@@ -87,15 +87,20 @@ class AddRecipientsInputFieldBuilder {
               child: Text('*', style: TextStyle(color: AppColor.uploadRequestTitleRequiredTextColor)))
           ])),
         SizedBox(height: 16.0),
-        TypeAheadFormField<AutoCompleteResult>(
-          textFieldConfiguration: TextFieldConfiguration(
-            controller: _addRecipientsFieldController,
-            textInputAction: TextInputAction.done,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(vertical: 15),
-              hintText: AppLocalizations.of(context).add_people,
-              hintStyle: TextStyle(color: AppColor.uploadRequestHintTextColor, fontSize: 16.0),
-              prefixIcon: Icon(Icons.person_add, size: 24.0))),
+        TypeAheadField<AutoCompleteResult>(
+          controller: _addRecipientsFieldController,
+          builder: (context, controller, focusNode) {
+            return TextField(
+              controller: controller,
+              focusNode: focusNode,
+              textInputAction: TextInputAction.done,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.symmetric(vertical: 15),
+                hintText: AppLocalizations.of(context).add_people,
+                hintStyle: TextStyle(color: AppColor.uploadRequestHintTextColor, fontSize: 16.0),
+                prefixIcon: Icon(Icons.person_add, size: 24.0)),
+            );
+          },
           debounceDuration: Duration(milliseconds: 300),
           suggestionsCallback: (pattern) async {
             if (pattern.length >= 3 && _onSuggestionCallback != null) {
@@ -116,7 +121,7 @@ class AddRecipientsInputFieldBuilder {
                 style: TextStyle(fontSize: 14.0, color: AppColor.userTagRemoveButtonBackgroundColor)),
             );
           },
-          onSuggestionSelected: (autoCompleteResult) {
+          onSelected: (autoCompleteResult) {
             _addRecipientsFieldController?.clear();
             if (_onSuggestionSelectedAction != null) {
               _onSuggestionSelectedAction!(autoCompleteResult);

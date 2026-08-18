@@ -62,7 +62,7 @@ void main() {
 
   test('get all functionality data source should throw NotAuthorized when linShareHttpClient response error with 403', () async {
     final error = DioError(
-      type: DioErrorType.response,
+      type: DioErrorType.badResponse,
       response: Response(statusCode: 403, requestOptions: RequestOptions(path: '')),
       requestOptions: RequestOptions(path: '')
     );

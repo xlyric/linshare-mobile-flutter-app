@@ -40,7 +40,6 @@ import 'package:json_annotation/json_annotation.dart';
 part 'add_upload_body_request.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-@DatetimeConverter()
 @DatetimeNullableConverter()
 class AddUploadBodyRequest with EquatableMixin {
 

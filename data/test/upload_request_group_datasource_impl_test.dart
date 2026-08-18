@@ -73,7 +73,7 @@ void getAllUploadRequestGroupsTest() {
 
     test('getAllUploadRequestGroups should throw MissingRequiredFields when linShareHttpClient response error with 400', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 400, requestOptions: RequestOptions(path: '')),
           requestOptions: RequestOptions(path: ''));
 
@@ -108,7 +108,7 @@ void getAllUploadRequestGroupsTest() {
 
     test('addNewUploadRequest should throw exception when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')),
           requestOptions: RequestOptions(path: ''));
 
@@ -151,7 +151,7 @@ void addRecipientsTest() {
 
     test('addRecipients should throw exception when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')),
           requestOptions: RequestOptions(path: ''));
 
@@ -194,7 +194,7 @@ void cancelUploadRequestGroupTest() {
 
     test('cancel upload_request_group should throw UploadRequestGroupsNotFound when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(_linShareHttpClient.updateUploadRequestGroupStatus(uploadRequestGroup1.uploadRequestGroupId, UploadRequestStatus.CANCELED))
@@ -235,7 +235,7 @@ void archiveUploadRequestGroupTest() {
 
     test('archive upload_request_group should throw exception when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')),
           requestOptions: RequestOptions(path: ''));
 
@@ -277,7 +277,7 @@ void closeUploadRequestGroupTest() {
 
     test('close upload_request_group should throw exception when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')),
           requestOptions: RequestOptions(path: ''));
 

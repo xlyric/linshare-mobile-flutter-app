@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 3.10.4
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=3.9.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -33,115 +33,115 @@ dependencies:
     path: domain
 
   # Http client
-  dio: 4.0.0
-  native_flutter_proxy: 0.1.15
-  json_annotation: 4.4.0
+  dio: ^5.11.0
+  native_flutter_proxy: ^0.3.1
+  json_annotation: ^4.12.0
 
   #get_it
-  get_it: 7.1.3
+  get_it: ^9.2.1
 
   #  redux
-  flutter_redux: 0.10.0
+  flutter_redux: ^0.10.0
 
   # redux_thunk
-  redux_thunk: 0.4.0
+  redux_thunk: ^0.4.0
 
   #  either
-  dartz: 0.10.1
+  dartz: ^0.10.1
 
   # shared_preferences
-  shared_preferences: 2.0.13
+  shared_preferences: ^2.5.5
 
   #rxdart
-  rxdart: 0.27.3
+  rxdart: ^0.28.0
 
   # device_info
-  device_info: 2.0.0
+  device_info_plus: ^13.2.0
 
   # file_picker
-  file_picker: 5.2.2
+  file_picker: ^12.0.0
 
   # flutter toast
-  fluttertoast: 8.0.6
+  fluttertoast: ^10.0.0
 
   # redux_logging
-  redux_logging: 0.5.0
+  redux_logging: ^0.5.1
 
   # receive_sharing_intent
-  receive_sharing_intent: 1.4.5
+  receive_sharing_intent: ^1.9.0
 
   # intl
-  intl_generator: 0.2.1
+  intl: ^0.20.3
 
   # flutter_svg
-  flutter_svg: 0.22.0
+  flutter_svg: ^2.3.0
 
   # flutter_downloader
-  flutter_downloader: 1.7.3
+  flutter_downloader: ^1.12.0
 
   #filesize
-  filesize: 2.0.1
-  data_size: 0.2.0
+  filesize: ^2.0.1
+  data_size: ^0.2.0
 
   # share
-  share: 2.0.1
+  share_plus: ^13.3.0
 
   # flutter_tags
-  flutter_tags: 1.0.0-nullsafety.1
+  flutter_tags: ^1.0.0-nullsafety.1
 
   # flutter_typeahead
-  flutter_typeahead: 4.0.0
+  flutter_typeahead: ^6.0.0
 
   # Mime type
-  mime: 1.0.0
+  mime: ^2.0.0
 
   # connectivity
-  connectivity: 3.0.3
+  connectivity_plus: ^7.3.1
 
   # open_file
-  better_open_file: 3.6.4
+  open_filex: ^4.7.0
   # url_launcher
-  url_launcher: 6.1.3
+  url_launcher: ^6.3.2
 
   # pin_code
-  pin_code_fields: 7.2.0
+  pin_code_fields: ^9.4.0
 
   # local_auth
-  local_auth: 2.1.0
+  local_auth: ^3.0.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: 1.0.2
-  pedantic: 1.11.0
-  permission_handler: 10.2.0
+  cupertino_icons: ^1.0.9
+  pedantic: ^1.11.1
+  permission_handler: ^11.3.1
 
   # OIDC
-  flutter_appauth: 4.0.0
+  flutter_appauth: ^12.0.2
 
   # datetime picker
-  flutter_datetime_picker: 1.5.1
+  flutter_datetime_picker_plus: any
 
   # camera picker
-  wechat_camera_picker: 3.8.0
+  wechat_camera_picker: ^4.6.0
 
   # audio recording and displaying waveforms
-  audio_waveforms: 0.1.5+1
+  audio_waveforms: ^2.0.2
 
-  phone_state: 1.0.2
+  phone_state: ^4.0.1
   
-  async: 2.8.2
+  async: ^2.13.1
 
-  firebase_core: 1.19.1
-  firebase_crashlytics: 2.8.4
+  firebase_core: ^4.13.0
+  firebase_crashlytics: ^5.2.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_driver:
     sdk: flutter
-  build_runner: 2.1.7
-  json_serializable: 6.1.4
-  mockito: 5.0.17
+  build_runner: ^2.16.0
+  json_serializable: ^6.14.1
+  mockito: ^5.8.1
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

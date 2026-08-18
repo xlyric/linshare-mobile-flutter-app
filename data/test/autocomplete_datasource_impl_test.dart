@@ -63,7 +63,7 @@ void main() {
 
     test('getAutoComplete should throw DocumentNotFound when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(linShareHttpClient.getSharingAutoComplete(AutoCompletePattern('user'), AutoCompleteType.SHARING))
@@ -79,7 +79,7 @@ void main() {
 
     test('getAutoComplete should throw DocumentNotFound when linShareHttpClient response error with 500 with errCode 1000', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 500, data: {'errCode': 1000}, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(linShareHttpClient.getSharingAutoComplete(AutoCompletePattern('us'), AutoCompleteType.SHARING))

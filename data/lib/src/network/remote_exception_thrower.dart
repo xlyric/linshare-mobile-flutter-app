@@ -39,9 +39,9 @@ class RemoteExceptionThrower {
     developer.log('throwRemoteException(): ', name: 'RemoteExceptionThrower', error: exception);
     if (exception is DioError) {
       switch (exception.type) {
-        case DioErrorType.other:
+        case DioErrorType.unknown:
           throw ServerNotFound();
-        case DioErrorType.connectTimeout:
+        case DioErrorType.connectionTimeout:
           throw ConnectError();
         default:
           handler != null ? handler(exception) : throw UnknownError(exception.message);

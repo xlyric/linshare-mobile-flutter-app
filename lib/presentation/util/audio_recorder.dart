@@ -69,7 +69,7 @@ class AudioRecorder {
         final currentTime = DateTime.now().millisecondsSinceEpoch;
         final fileName = 'audio_$currentTime.m4a';
         recordingPath = '$tempPath/$fileName';
-        await recorderController.record(recordingPath);
+        await recorderController.record(path: recordingPath);
         return Right(AudioRecorderStarted());
       } else {
         return Left(

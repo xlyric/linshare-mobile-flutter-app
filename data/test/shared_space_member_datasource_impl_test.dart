@@ -65,7 +65,7 @@ void main() {
 
     test('getAllSharedSpaceMembers should throw SharedSpacesNotFound when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(_linShareHttpClient.getSharedSpaceMembers(sharedSpaceId1))
@@ -94,7 +94,7 @@ void main() {
 
     test('addMember should throw SharedSpacesNotFound when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
 
@@ -129,7 +129,7 @@ void main() {
 
     test('updateRoleSharedSpaceMember should throw SharedSpacesNotFound when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
 
@@ -151,7 +151,7 @@ void main() {
 
     test('updateRoleSharedSpaceMember should throw NotAuthorized when linShareHttpClient response error with 403', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 403, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
 
@@ -181,7 +181,7 @@ void main() {
 
     test('deleteSharedSpaceMember should throw SharedSpaceMemberNotFound when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
 
@@ -198,7 +198,7 @@ void main() {
 
     test('deleteSharedSpaceMember should throw NotAuthorized when linShareHttpClient response error with 403', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 403, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
 

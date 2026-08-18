@@ -43,13 +43,13 @@ part 'add_shared_space_member_body_request.g.dart';
 @JsonSerializable()
 @AccountIdConverter()
 @SharedSpaceIdConverter()
-@SharedSpaceRoleIdConverter()
-@SharedSpaceRoleIdNullableConverter()
 class AddSharedSpaceMemberBodyRequest with EquatableMixin {
   final AccountId account;
   final SharedSpaceId node;
+  @SharedSpaceRoleIdConverter()
   final SharedSpaceRoleId role;
   final LinShareNodeType? type;
+  @SharedSpaceRoleIdNullableConverter()
   final SharedSpaceRoleId? nestedRole;
 
   AddSharedSpaceMemberBodyRequest(

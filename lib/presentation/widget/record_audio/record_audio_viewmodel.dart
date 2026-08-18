@@ -64,9 +64,9 @@ class RecordAudioViewModel extends BaseViewModel {
   }
 
   void _listenToPhoneState() {
-    _phoneStateSubscription = PhoneState.phoneStateStream.listen(
-      (status) {
-        if (status == PhoneStateStatus.CALL_INCOMING) {
+    _phoneStateSubscription = PhoneState.stream.listen(
+      (phoneState) {
+        if (phoneState.status == PhoneStateStatus.CALL_INCOMING) {
           pauseAudioRecording();
         }
       },

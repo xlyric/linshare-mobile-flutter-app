@@ -151,7 +151,7 @@ class PinCodeWidget extends StatefulWidget {
 }
 
 class _PinCodeWidgetState extends State<PinCodeWidget> {
-  late StreamController<ErrorAnimationType> errorController;
+  late PinInputController pinController;
 
   String currentText = '';
   final formKey = GlobalKey<FormState>();
@@ -160,12 +160,12 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
   @override
   void initState() {
     super.initState();
-    errorController = StreamController<ErrorAnimationType>();
+    pinController = PinInputController();
   }
 
   @override
   void dispose() {
-    errorController.close();
+    pinController.dispose();
     pinCodeErrorNotifier.dispose();
     widget.pinCodeValidationStateNotifier.dispose();
     super.dispose();
@@ -203,52 +203,44 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
               key: formKey,
               child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: widget.pinCodeFieldPaddingHorizontal),
-                  child: PinCodeTextField(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    appContext: context,
-                    pastedTextStyle: widget.pinTextStyle,
+                  child: MaterialPinField(
                     length: widget.pinCount,
+                    pinController: pinController,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     blinkWhenObscuring: false,
-                    animationType: AnimationType.fade,
-                    validator: (v) {
-                      return null;
-                    },
-                    pinTheme: PinTheme(
-                      shape: PinCodeFieldShape.box,
+                    theme: MaterialPinTheme(
+                      shape: MaterialPinShape.filled,
+                      entryAnimation: MaterialPinAnimation.fade,
+                      showCursor: false,
+                      animationDuration: Duration(milliseconds: 300),
                       borderRadius: BorderRadius.circular(widget.pinBorderRadius),
                       borderWidth: 0,
-                      fieldWidth: widget.pinSizeWidth,
-                      fieldHeight: widget.pinSizeHeight,
-                      activeFillColor: widget.pinBackgroundColor,
-                      inactiveFillColor: widget.pinBackgroundColor,
-                      selectedFillColor: widget.pinBackgroundColor,
-                      inactiveColor: widget.pinBackgroundColor,
-                      selectedColor: widget.pinBackgroundColor,
-                      activeColor: widget.pinBackgroundColor,
-                      disabledColor: widget.pinBackgroundColor,
+                      cellSize: Size(widget.pinSizeWidth, widget.pinSizeHeight),
+                      fillColor: widget.pinBackgroundColor,
+                      focusedFillColor: widget.pinBackgroundColor,
+                      filledFillColor: widget.pinBackgroundColor,
+                      followingFillColor: widget.pinBackgroundColor,
+                      completeFillColor: widget.pinBackgroundColor,
+                      disabledFillColor: widget.pinBackgroundColor,
+                      textStyle: widget.pinTextStyle,
+                      boxShadows: [
+                        BoxShadow(
+                          offset: Offset(0, 1),
+                          color: Colors.black12,
+                          blurRadius: widget.pinBorderRadius,
+                        )
+                      ],
                     ),
-                    showCursor: false,
                     autoFocus: true,
-                    animationDuration: Duration(milliseconds: 300),
-                    enableActiveFill: true,
-                    errorAnimationController: errorController,
                     keyboardType: TextInputType.number,
-                    backgroundColor: widget.pinCodeFieldBackgroundColor,
-                    boxShadows: [
-                      BoxShadow(
-                        offset: Offset(0, 1),
-                        color: Colors.black12,
-                        blurRadius: widget.pinBorderRadius,
-                      )
-                    ],
                     onCompleted: (v) {
                       pinCodeErrorNotifier.value = PinCodeValidationType.Correct;
                     },
                     onChanged: (value) {
                       currentText = value;
                     },
-                    beforeTextPaste: (text) {
-                      return text?.isIntegerNumber() ?? false;
+                    clipboardValidator: (text, length) {
+                      return text.isIntegerNumber();
                     },
                   )),
             ),
@@ -280,7 +272,7 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
               text: widget.buttonText, onButtonClick: () {
           formKey.currentState?.validate();
           if (currentText.length != widget.pinCount) {
-            errorController.add(ErrorAnimationType.shake);
+            pinController.triggerError();
             pinCodeErrorNotifier.value = PinCodeValidationType.Error;
           } else {
             pinCodeErrorNotifier.value = PinCodeValidationType.Correct;

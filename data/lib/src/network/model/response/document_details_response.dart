@@ -43,8 +43,6 @@ import 'document_response.dart';
 part 'document_details_response.g.dart';
 
 @JsonSerializable()
-@DatetimeConverter()
-@DatetimeNullableConverter()
 class DocumentDetailsResponse extends DocumentResponse {
   DocumentDetailsResponse(
     DocumentId documentId,

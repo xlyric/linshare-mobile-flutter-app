@@ -42,8 +42,6 @@ import 'package:http_parser/http_parser.dart';
 part 'document_response.g.dart';
 
 @JsonSerializable()
-@DatetimeConverter()
-@DatetimeNullableConverter()
 class DocumentResponse extends Equatable {
   DocumentResponse(
       this.documentId,
@@ -63,8 +61,11 @@ class DocumentResponse extends Equatable {
   final DocumentId documentId;
 
   final String description;
+  @DatetimeConverter()
   final DateTime creationDate;
+  @DatetimeConverter()
   final DateTime modificationDate;
+  @DatetimeNullableConverter()
   final DateTime? expirationDate;
   final bool ciphered;
   final String name;

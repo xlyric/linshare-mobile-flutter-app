@@ -119,11 +119,14 @@ app.*.symbols
 #generated file
 *.g.dart
 messages_all.dart
+messages_all_locales.dart
 messages_en.dart
 messages_fr.dart
 messages_messages.dart
 messages_ru.dart
 messages_vi.dart
+lib/l10n/messages_*.dart
+ios/Flutter/ephemeral/
 
 /android/**/google-services.json
 /ios/**/GoogleService-Info.plist

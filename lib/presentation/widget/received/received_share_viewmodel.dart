@@ -65,11 +65,11 @@ import 'package:linshare_flutter_app/presentation/widget/destination_picker/dest
 import 'package:linshare_flutter_app/presentation/widget/destination_picker/destination_picker_arguments.dart';
 import 'package:linshare_flutter_app/presentation/widget/received_share_details/received_share_details_arguments.dart';
 import 'package:linshare_flutter_app/presentation/widget/shared_space_document/shared_space_document_arguments.dart';
-import 'package:better_open_file/better_open_file.dart' as open_file;
+import 'package:open_filex/open_filex.dart' as open_file;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:redux/src/store.dart';
 import 'package:redux_thunk/redux_thunk.dart';
-import 'package:share/share.dart' as share_library;
+import 'package:share_plus/share_plus.dart' as share_library;
 
 class ReceivedShareViewModel extends BaseViewModel {
   final GetAllReceivedSharesInteractor _getAllReceivedInteractor;
@@ -354,7 +354,7 @@ class ReceivedShareViewModel extends BaseViewModel {
   void _openDownloadedPreviewReceivedShare(ReceivedShare receivedShare, DownloadPreviewReceivedShareViewState viewState) async {
     _appNavigation.popBack();
 
-    final openResult = await open_file.OpenFile.open(
+    final openResult = await open_file.OpenFilex.open(
         viewState.filePath,
         type: Platform.isAndroid ? receivedShare.mediaType.mimeType : null,
         uti:  Platform.isIOS ? receivedShare.mediaType.getDocumentUti().value : null);
@@ -510,17 +510,17 @@ class ReceivedShareViewModel extends BaseViewModel {
       _appNavigation.popBack();
       store.dispatch(ReceivedShareAction(Right(success)));
       if (success is ExportReceivedShareViewState) {
-        await share_library.Share.shareFiles([success.filePath]);
+        await share_library.Share.shareXFiles([share_library.XFile(success.filePath)]);
       } else if (success is ExportReceivedSharesAllSuccessViewState) {
-        await share_library.Share.shareFiles(success.resultList
+        await share_library.Share.shareXFiles(success.resultList
           .map((result) => ((result.getOrElse(() => IdleState()) as ExportReceivedShareViewState).filePath))
-          .toList());
+          .toList().map((path) => share_library.XFile(path)).toList());
       } else if (success is ExportReceivedSharesHasSomeFilesFailureViewState) {
-        await share_library.Share.shareFiles(success.resultList
+        await share_library.Share.shareXFiles(success.resultList
           .map((result) => result.fold(
             (failure) => '',
             (success) => ((success as ExportReceivedShareViewState).filePath)))
-          .toList());
+          .toList().map((path) => share_library.XFile(path)).toList());
       }
     };
   }

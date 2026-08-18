@@ -76,7 +76,7 @@ class UploadRequestEntryDataSourceImpl implements UploadRequestEntryDataSource {
   Future<List<DownloadTaskId>> downloadUploadRequestEntries(List<UploadRequestEntry> entries, Token token, Uri baseUrl, APIVersionSupported apiVersion) async {
     var externalStorageDirPath;
     if (Platform.isAndroid) {
-      externalStorageDirPath = await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS);
+      externalStorageDirPath = await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOAD);
     } else if (Platform.isIOS) {
       externalStorageDirPath = (await getApplicationDocumentsDirectory()).absolute.path;
     } else {

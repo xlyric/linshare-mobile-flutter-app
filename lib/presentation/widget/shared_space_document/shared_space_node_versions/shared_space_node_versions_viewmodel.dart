@@ -56,11 +56,11 @@ import 'package:linshare_flutter_app/presentation/widget/destination_picker/dest
 import 'package:linshare_flutter_app/presentation/widget/shared_space_document/shared_space_document_arguments.dart';
 import 'package:linshare_flutter_app/presentation/widget/shared_space_document/shared_space_node_versions/shared_space_node_versions_arguments.dart';
 import 'package:linshare_flutter_app/presentation/widget/upload_file/destination_type.dart';
-import 'package:better_open_file/better_open_file.dart' as open_file;
+import 'package:open_filex/open_filex.dart' as open_file;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
-import 'package:share/share.dart' as share_library;
+import 'package:share_plus/share_plus.dart' as share_library;
 
 class SharedSpaceNodeVersionsViewModel extends BaseViewModel {
   final AppNavigation _appNavigation;
@@ -208,7 +208,7 @@ class SharedSpaceNodeVersionsViewModel extends BaseViewModel {
   void _openDownloadedPreviewDocument(WorkGroupDocument document, DownloadPreviewWorkGroupDocumentViewState viewState) async {
     _appNavigation.popBack();
 
-    final openResult = await open_file.OpenFile.open(
+    final openResult = await open_file.OpenFilex.open(
       viewState.filePath,
       type: Platform.isAndroid ? document.mediaType.mimeType : null,
       uti: Platform.isIOS ? document.mediaType.getDocumentUti().value : null);
@@ -298,17 +298,17 @@ class SharedSpaceNodeVersionsViewModel extends BaseViewModel {
       _appNavigation.popBack();
 
       if (success is DownloadNodeIOSViewState) {
-        await share_library.Share.shareFiles([success.filePath]);
+        await share_library.Share.shareXFiles([share_library.XFile(success.filePath)]);
       } else if (success is DownloadNodeIOSAllSuccessViewState) {
-        await share_library.Share.shareFiles(success.resultList
+        await share_library.Share.shareXFiles(success.resultList
           .map((result) => ((result.getOrElse(() => IdleState()) as DownloadNodeIOSViewState).filePath))
-          .toList());
+          .toList().map((path) => share_library.XFile(path)).toList());
       } else if (success is DownloadNodeIOSHasSomeFilesFailureViewState) {
-        await share_library.Share.shareFiles(success.resultList
+        await share_library.Share.shareXFiles(success.resultList
           .map((result) => result.fold(
             (failure) => '',
             (success) => ((success as DownloadNodeIOSViewState).filePath)))
-          .toList());
+          .toList().map((path) => share_library.XFile(path)).toList());
       }
     };
   }

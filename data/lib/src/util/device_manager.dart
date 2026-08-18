@@ -33,7 +33,7 @@ import 'dart:async';
 import 'dart:core';
 import 'dart:io';
 
-import 'package:device_info/device_info.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 
 class DeviceManager {
   final DeviceInfoPlugin _deviceInfoPlugin;
@@ -45,10 +45,10 @@ class DeviceManager {
     try {
       if (Platform.isIOS) {
         var info = await _deviceInfoPlugin.iosInfo;
-        deviceUUID = info.identifierForVendor;
+        deviceUUID = info.identifierForVendor ?? deviceUUID;
       } else if (Platform.isAndroid) {
         var info = await _deviceInfoPlugin.androidInfo;
-        deviceUUID = info.androidId;
+        deviceUUID = info.id;
       }
     } catch (exception) {
       print(exception.toString());

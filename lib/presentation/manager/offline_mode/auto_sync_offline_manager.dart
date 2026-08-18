@@ -29,7 +29,7 @@
 //  3 and <http://www.linshare.org/licenses/LinShare-License_AfferoGPL-v3.pdf> for
 //  the Additional Terms applicable to LinShare software.
 
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:domain/domain.dart';
 import 'package:linshare_flutter_app/presentation/redux/actions/my_space_action.dart';

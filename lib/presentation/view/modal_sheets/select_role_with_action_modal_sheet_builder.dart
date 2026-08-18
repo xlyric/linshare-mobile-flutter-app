@@ -112,7 +112,7 @@ class SelectRoleWithActionModalSheetBuilder {
         children: [
           OutlinedButton(
             style: OutlinedButton.styleFrom(
-                primary: AppColor.documentNameItemTextColor,
+                foregroundColor: AppColor.documentNameItemTextColor,
                 backgroundColor: Colors.white,
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),
@@ -121,7 +121,7 @@ class SelectRoleWithActionModalSheetBuilder {
           OutlinedButton(
               onPressed: () => _onPositiveActionButtonClick?.call(currentRole ?? selectedRole, isOptionalCheckboxChecked),
               style: OutlinedButton.styleFrom(
-                  primary: Colors.white,
+                  foregroundColor: Colors.white,
                   padding: EdgeInsets.symmetric(horizontal: 55, vertical: 12),
                   backgroundColor: AppColor.primaryColor,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),

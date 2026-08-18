@@ -57,7 +57,7 @@ void main() {
 
     test('deletePermanentToken should throw MissingRequiredFields when linShareHttpClient response error is 400', () async {
       var error = DioError(
-        type: DioErrorType.response,
+        type: DioErrorType.badResponse,
         response: Response(statusCode: 400, requestOptions: RequestOptions(path: '')),
         requestOptions: RequestOptions(path: '')
       );

@@ -31,7 +31,7 @@
 
 import 'dart:developer' as developer;
 
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:data/data.dart';
 import 'package:domain/domain.dart';
@@ -89,11 +89,11 @@ class InitializeViewModel extends BaseViewModel {
       .then((_) => FlutterDownloader.registerCallback(downloadCallback));
   }
 
-  static void downloadCallback(String id, DownloadTaskStatus status, int progress) {}
+  static void downloadCallback(String id, int status, int progress) {}
 
   void _getNetworkConnectivityState() async {
     developer.log('_getNetworkConnectivityState(): ', name: 'InitializeViewModel');
-    store.dispatch(SetNetworkConnectivityStateAction(await _connectivity.checkConnectivity()));
+    store.dispatch(SetNetworkConnectivityStateAction((await _connectivity.checkConnectivity()).first));
   }
 
   void registerReceivingSharingIntent() {

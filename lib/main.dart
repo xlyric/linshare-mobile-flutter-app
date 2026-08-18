@@ -53,11 +53,17 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setUpGetIt();
   await setUpProxy();
-  await Firebase.initializeApp();
+  var firebaseAvailable = true;
+  try {
+    await Firebase.initializeApp();
+  } catch (exception) {
+    firebaseAvailable = false;
+    debugPrint('main(): Firebase.initializeApp() failed: $exception');
+  }
   if (kProfileMode) {
     enableFlutterDriverExtension();
   }
-  if (kDebugMode) {
+  if (kDebugMode && firebaseAvailable) {
     await FirebaseCrashlytics.instance
       .setCrashlyticsCollectionEnabled(false);
   }

@@ -68,7 +68,7 @@ void getAllUploadRequestTest() {
 
     test('getAllUploadRequests should throw Exception when linShareHttpClient response error with 404 Not Found', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')),
           requestOptions: RequestOptions(path: ''));
 

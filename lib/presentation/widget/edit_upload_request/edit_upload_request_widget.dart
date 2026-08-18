@@ -125,7 +125,7 @@ class _EditUploadRequestWidgetState extends State<EditUploadRequestWidget> {
             children: [
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                  primary: AppColor.documentNameItemTextColor,
+                  foregroundColor: AppColor.documentNameItemTextColor,
                   backgroundColor: Colors.white,
                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),
@@ -136,7 +136,7 @@ class _EditUploadRequestWidgetState extends State<EditUploadRequestWidget> {
                 child: OutlinedButton(
                   onPressed: () =>  _model.validateFormData(context),
                   style: OutlinedButton.styleFrom(
-                    primary: Colors.white,
+                    foregroundColor: Colors.white,
                     padding: EdgeInsets.symmetric(horizontal: 55, vertical: 12),
                     backgroundColor: (snapshot.data ?? false)
                       ? AppColor.primaryColor

@@ -30,7 +30,7 @@
 //  the Additional Terms applicable to LinShare software.
 //
 
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter_test/flutter_test.dart';

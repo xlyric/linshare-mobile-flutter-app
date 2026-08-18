@@ -145,9 +145,12 @@ class _AddSharedSpaceMemberWidgetState extends State<AddSharedSpaceMemberWidget>
               Expanded(
                   child: Padding(
                       padding: EdgeInsets.only(bottom: 18, left: 18),
-                      child: TypeAheadFormField(
-                          textFieldConfiguration: TextFieldConfiguration(
-                              controller: _typeAheadController,
+                      child: TypeAheadField<AutoCompleteResult>(
+                          controller: _typeAheadController,
+                          builder: (context, controller, focusNode) {
+                            return TextField(
+                              controller: controller,
+                              focusNode: focusNode,
                               textInputAction: TextInputAction.done,
                               decoration: InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(vertical: 15),
@@ -157,7 +160,9 @@ class _AddSharedSpaceMemberWidgetState extends State<AddSharedSpaceMemberWidget>
                                   prefixIcon: Icon(
                                     Icons.person_add,
                                     size: 24.0,
-                                  ))),
+                                  )),
+                            );
+                          },
                           debounceDuration: Duration(milliseconds: 300),
                           suggestionsCallback: (pattern) async {
                             if (pattern.length >= 3) {
@@ -184,11 +189,11 @@ class _AddSharedSpaceMemberWidgetState extends State<AddSharedSpaceMemberWidget>
                                       color: AppColor.userTagRemoveButtonBackgroundColor)),
                             );
                           },
-                          onSuggestionSelected: (autoCompleteResult) async {
+                          onSelected: (autoCompleteResult) async {
                             _typeAheadController.text = '';
                             _model.addSharedSpaceMember(sharedSpace, autoCompleteResult as SharedSpaceMemberAutoCompleteResult);
                           },
-                          noItemsFoundBuilder: (context) => Padding(
+                          emptyBuilder: (context) => Padding(
                                 padding: EdgeInsets.all(24.0),
                                 child: Text(
                                   AppLocalizations.of(context).unknown_user,

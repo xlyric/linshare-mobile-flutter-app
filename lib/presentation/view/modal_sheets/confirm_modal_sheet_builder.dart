@@ -162,7 +162,7 @@ class ConfirmModalSheetBuilder {
                                   child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
                                     OutlinedButton(
                                       style: OutlinedButton.styleFrom(
-                                          primary: AppColor.documentNameItemTextColor,
+                                          foregroundColor: AppColor.documentNameItemTextColor,
                                           padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
                                       onPressed: () => _appNavigation.popBack(),
@@ -171,7 +171,7 @@ class ConfirmModalSheetBuilder {
                                     OutlinedButton(
                                         onPressed: () => _onConfirmActionClick(isOptionalCheckboxChecked),
                                         style: OutlinedButton.styleFrom(
-                                            primary: Colors.white,
+                                            foregroundColor: Colors.white,
                                             padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                                             backgroundColor: AppColor.toastErrorBackgroundColor,
                                             shape:

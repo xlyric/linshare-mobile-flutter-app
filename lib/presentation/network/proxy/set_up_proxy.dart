@@ -34,10 +34,10 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:linshare_flutter_app/presentation/di/get_it_service.dart';
-import 'package:native_flutter_proxy/native_proxy_reader.dart';
+import 'package:native_flutter_proxy/native_flutter_proxy.dart';
 
 Future<void> setUpProxy() async {
   try {
@@ -45,7 +45,7 @@ Future<void> setUpProxy() async {
     log('::setUpProxy(): enable = ${settings.enabled}, host = ${settings.host}, port = ${settings.port}');
     if (settings.enabled && settings.host != null) {
       if (Platform.isAndroid) {
-        (getIt<Dio>().httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
+        (getIt<Dio>().httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
           client.badCertificateCallback = (X509Certificate cert, String host, int port) {
             log('Bad certificate callback called. $host:$port. cert: ${cert.subject}');
             return true;

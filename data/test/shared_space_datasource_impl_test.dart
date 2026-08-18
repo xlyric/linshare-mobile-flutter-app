@@ -66,7 +66,7 @@ void main() {
 
     test('getAllSharedSpaces should throw SharedSpacesNotFound when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(_linShareHttpClient.getSharedSpaces())
@@ -81,7 +81,7 @@ void main() {
 
     test('getAllSharedSpaces should throw SharedSpacesNotFound when linShareHttpClient response error with 403', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 403, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(_linShareHttpClient.getSharedSpaces())
@@ -104,7 +104,7 @@ void main() {
 
     test('delete shared space should throw SharedSpacesNotFound when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(_linShareHttpClient.deleteSharedSpace(sharedSpace1.sharedSpaceId))
@@ -120,7 +120,7 @@ void main() {
 
     test('delete shared space should throw SharedSpacesNotFound when linShareHttpClient response error with 403', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 403, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(_linShareHttpClient.deleteSharedSpace(sharedSpace1.sharedSpaceId))
@@ -160,7 +160,7 @@ void main() {
 
     test('getSharedSpace should throw SharedSpacesNotFound when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(_linShareHttpClient.getSharedSpace(
@@ -176,7 +176,7 @@ void main() {
 
     test('getSharedSpace should throw SharedSpacesNotFound when linShareHttpClient response error with 403', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 403, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(_linShareHttpClient.getSharedSpace(sharedSpaceId1))
@@ -199,7 +199,7 @@ void main() {
 
     test('create shared space work group should throw SharedSpacesNotFound when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(_linShareHttpClient.createSharedSpaceWorkGroup(CreateWorkGroupBodyRequest(sharedSpace1.name, LinShareNodeType.WORK_GROUP)))
@@ -216,7 +216,7 @@ void main() {
 
     test('create shared space should throw NestedWorkgroupReachLimit when linShareHttpClient response error with 403 errCode = 55508', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(
             statusCode: 403,
             data: {
@@ -254,7 +254,7 @@ void main() {
 
     test('Rename WorkGroup Should Throw Exception When Renamed Failed', () async {
       final error = DioError(
-        type: DioErrorType.response,
+        type: DioErrorType.badResponse,
         response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
 

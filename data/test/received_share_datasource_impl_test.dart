@@ -73,7 +73,7 @@ void getAllReceivedSharesTest() {
 
     test('getAllDocument should throw DataNotFound when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(_linShareHttpClient.getReceivedShares())
@@ -115,7 +115,7 @@ void getReceivedShareTest() {
 
     test('_linShareHttpClient should throw DataNotFound when linShareHttpClient response error with 404', () async {
       final error = DioError(
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: '')
       );
       when(_linShareHttpClient.getReceivedShare(receivedShare1.shareId))
@@ -159,7 +159,7 @@ void _removeReceivedShareTest() {
 
     test('remove received share should throw ReceivedShareNotFound when linShareHttpClient response error with 404', () async {
       final error = DioError(
-        type: DioErrorType.response,
+        type: DioErrorType.badResponse,
         response: Response(statusCode: 404, requestOptions: RequestOptions(path: '')), requestOptions: RequestOptions(path: ''));
 
       when(_linShareHttpClient.removeReceivedShare(receivedShare1.shareId))

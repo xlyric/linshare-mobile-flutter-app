@@ -31,7 +31,7 @@
 
 import 'dart:async';
 
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:domain/domain.dart';
 import 'package:linshare_flutter_app/presentation/model/biometric_boot_source.dart';
@@ -228,8 +228,9 @@ class HomeViewModel extends BaseViewModel {
   }
 
   void _registerNetworkConnectivityState() async {
-    store.dispatch(SetNetworkConnectivityStateAction(await _connectivity.checkConnectivity()));
-    _connectivityStreamSubscription = _connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
+    store.dispatch(SetNetworkConnectivityStateAction((await _connectivity.checkConnectivity()).first));
+    _connectivityStreamSubscription = _connectivity.onConnectivityChanged.listen((List<ConnectivityResult> results) {
+      final result = results.first;
       store.dispatch(SetNetworkConnectivityStateAction(result));
       if (store.state.account.user == null && result != ConnectivityResult.none) {
         _getAuthorizedUser();
