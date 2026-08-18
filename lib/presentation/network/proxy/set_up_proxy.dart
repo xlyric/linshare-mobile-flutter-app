@@ -46,10 +46,11 @@ Future<void> setUpProxy() async {
     if (settings.enabled && settings.host != null) {
       if (Platform.isAndroid) {
         (getIt<Dio>().httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
-          client.badCertificateCallback = (X509Certificate cert, String host, int port) {
-            log('Bad certificate callback called. $host:$port. cert: ${cert.subject}');
-            return true;
-          };
+          // Intentionally no badCertificateCallback override: certificates are
+          // validated normally against the OS trust store (system + user-added
+          // CAs, as configured in network_security_config.xml). Users who need
+          // to trust a self-signed/local server certificate should install it
+          // as a trusted CA on the device rather than disabling validation here.
           client.findProxy = (url) {
             log('::setUpProxy(): $url');
             return HttpClient.findProxyFromEnvironment(
